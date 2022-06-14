@@ -16,47 +16,75 @@ import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = "LoginActivity";
-    private EditText etUsername = findViewById(R.id.etUsername);
-    private EditText etPassword = findViewById(R.id.etPassword);
-    private Button btnLogin = findViewById(R.id.btnLogIn);
+    public EditText etUsername;
+    public EditText etPassword;
+    public Button btnLogin;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+//        btnLogin = (Button) findViewById(R.id.btnSignIn);
+
+        btnLogin = findViewById(R.id.btnLogIn);
+        etUsername = findViewById(R.id.etUsername);
+        etPassword = findViewById(R.id.etPassword);
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: Login Button Clicked");
+                Log.i("test", "Button clicked");
+                Toast.makeText(LoginActivity.this,"Button was clicked", Toast.LENGTH_SHORT).show();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-                loginUser(username,password);
 
+
+                loginUser(username,password);
+                goMainActivity();
             }
         });
 
 
-
     }
 
-    private void loginUser(String username, String password) {
+//    protected void onCreate(Bundle savedInstanceState){
+//        super.onCreate(savedInstanceState);
+//        //insert this line here
+//        setContentView(R.layout.activity_login);
+//
+//        //Pull the button with the id
+//        btnLogin = (Button) findViewById(R.id.btnLogin);
+//
+//        //set onclicklistener
+//        btnLogin.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view){
+//                Toast.makeText(getApplicationContext(),"Button was Clicked", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
+
+    public void loginUser(String username, String password) {
         Log.i(TAG, "loginUser: Attempting to login user " + username);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
+                Log.d(TAG, "Edey work for here");
                 if( e != null) {
-                    Log.e(TAG, "error", e );
+                    Log.e(TAG, "error: It doesnt work here", e );
+                    Toast.makeText(LoginActivity.this,"failure", Toast.LENGTH_SHORT).show();;
                     return;
                 }
-                goMainActivity();
-                Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT);
-
+                    goMainActivity(); // and this goes back to main activity...
+                    Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void goMainActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
+    public void goMainActivity() {
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
 

@@ -8,6 +8,7 @@
 
     <application
         android:name=".ParseApplication"
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -18,10 +19,6 @@
         android:theme="@style/Theme.Parsetagram"
         tools:targetApi="31" >
         <activity
-            android:name=".MainActivity"
-            android:exported="true" >
-        </activity>
-        <activity
             android:name="com.example.parsetagram.splashscreen"
             android:exported="true">
             <intent-filter>
@@ -29,6 +26,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" >
         </activity>
     </application>
 

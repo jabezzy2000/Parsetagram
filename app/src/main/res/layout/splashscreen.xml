@@ -19,7 +19,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:text="Parsetagram"
-        android:textColor="@color/design_default_color_primary_dark"
+        android:textColor="@color/material_on_background_emphasis_high_type"
         android:textSize="30dp" />
 
 </RelativeLayout>
