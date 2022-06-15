@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                 loginUser(username,password);
-                goMainActivity();
+                //goMainActivity();
             }
         });
 
@@ -77,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"failure", Toast.LENGTH_SHORT).show();;
                     return;
                 }
-                    goMainActivity(); // and this goes back to main activity...
+//                    goMainActivity(); // and this goes back to main activity...
+                      goFeedActivity();
                     Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
         });
@@ -86,6 +87,10 @@ public class LoginActivity extends AppCompatActivity {
     public void goMainActivity() {
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+    public void goFeedActivity() {
+        Intent intent = new Intent(LoginActivity.this,FeedActivity.class);
+        startActivity((intent));
     }
 
 

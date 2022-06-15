@@ -20,32 +20,18 @@ import java.util.List;
 public class FeedActivity extends AppCompatActivity {
     protected adapter adapter;
     protected List<Post> allPosts;
-    ImageView ivProfilePicture;
-    TextView tvUsername;
-    ImageButton ibLike ;
-    ImageButton ibComment ;
-    ImageButton ibSave ;
-    ImageButton ibSend ;
-    TextView tvDescription;
+    RecyclerView recyclerView;
     String TAG = "tag";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
-        ivProfilePicture = findViewById(R.id.ivProfileImage);
-        tvUsername = findViewById(R.id.tvUsername);
-        ibComment = findViewById(R.id.ibComment);
-        ibLike = findViewById(R.id.ibLike);
-        ibSave =findViewById(R.id.ibSave);
-        ibSend = findViewById(R.id.ibSend);
-        tvDescription =findViewById(R.id.tvDescription);
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
-//        adapter adapter = new adapter(this,)
+        setContentView(R.layout.recyclerview);
+
+        recyclerView = findViewById(R.id.recyclerView);
         allPosts = new ArrayList<>();
         adapter = new adapter(this, allPosts);
-
         recyclerView.setAdapter(adapter);
         // set the layout manager on the recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -72,12 +58,10 @@ public class FeedActivity extends AppCompatActivity {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-
                 // for debugging purposes let's print every post description to logcat
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
-
                 // save received posts to list and notify adapter of new data
                 allPosts.addAll(posts);
                 adapter.notifyDataSetChanged();
