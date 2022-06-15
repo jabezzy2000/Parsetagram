@@ -22,6 +22,7 @@ import java.util.List;
 public class PostDetail extends AppCompatActivity {
     RecyclerView rvComments;
     Post post;
+    CommentsAdapter adapter;
 
     @Override
     protected void onRestart(){
@@ -44,7 +45,7 @@ public class PostDetail extends AppCompatActivity {
                     Log.e("Failed to fetch comments", e.getMessage());
                     return;
                 }
-                adapter..mComments.clear();
+                adapter.mComments.clear();
                 adapter.mComments.addAll(objects);
                 adapter.notifyDataSetChanged();
 

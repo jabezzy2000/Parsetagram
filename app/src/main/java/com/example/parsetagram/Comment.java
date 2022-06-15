@@ -14,17 +14,17 @@ public class Comment extends ParseObject {
     public void setAuthor(ParseUser user){
         put(KEY_AUTHOR,user);
     }
-    public void setPost(ParseUser post){
+    public void setPost(Post post){
         put(KEY_POST,post);
     }
     public String getPost(ParseUser post){
         return post.toString();
     }
-    public String getBody(ParseUser body){
-//        put(KEY_BODY,body);
+    public String getBody(){
+       return getString(KEY_BODY);
 
     }
-    public void setBody(ParseUser body){
+    public void setBody(String body){
         put(KEY_BODY,body);
     }
 

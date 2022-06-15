@@ -3,11 +3,13 @@ package com.example.parsetagram;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
@@ -36,7 +38,15 @@ public class ComposeCommentActivity extends AppCompatActivity {
                 comment.setBody(body);
                 comment.setPost(post);
 
-                comment.saveInBackground(new SaveCallback());
+                comment.saveInBackground(new SaveCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        if(e!=null) {
+                            Log.e("yikes", e.getMessage() );
+                            return;
+                        }
+                    }
+                });
             }
 
         });
