@@ -86,7 +86,8 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             // Bind the post data to the view elements
             tvUsername.setText(new StringBuilder().append("@").append(post.getUser().getUsername()).toString());
             tvDescription.setText(post.getDescription());
-            tvTime.setText(post.getCreatedAt().toString());
+//            tvTime.setText(post.getCreatedAt().toString());
+            tvTime.setText(Utilities.getSimpleTime(post.getCreatedAt()));
 //            tvTime.setText(com.codepath.apps.restclienttemplate.Utilities.getSimpleTime(post.getCreatedAt())); come back to this later
 
             ParseFile image = post.getImage();
@@ -96,7 +97,8 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             }
 
             if(profileImage != null){
-                Glide.with(context).load(profileImage.getUrl()).into(ivProfilePicture);
+                //Glide.with(context).load(profileImage.getUrl()).into(ivProfilePicture);
+                Utilities.roundedImage(context,profileImage.getUrl(),ivProfilePicture,30);
             }
         }
 

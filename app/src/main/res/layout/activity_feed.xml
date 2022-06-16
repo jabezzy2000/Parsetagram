@@ -15,7 +15,7 @@
         android:layout_alignParentTop="false"
         android:layout_centerVertical="false"
         android:layout_marginTop="48dp"
-
+        android:scaleType="fitXY"
         android:contentDescription="@string/poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

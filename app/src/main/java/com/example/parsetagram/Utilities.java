@@ -1,4 +1,4 @@
-package com.codepath.apps.restclienttemplate;
+package com.example.parsetagram;
 
 import android.content.Context;
 import android.util.Log;
@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,13 +31,14 @@ public class Utilities {
     } // method to setImage with rounded corners
 
     //method to get the date/time of a tweet in friendly format
-    public static String getSimpleTime(String rawJsonDate) {
+    public static String getSimpleTime(Date inputDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
         sf.setLenient(true);
 
         try {
-            long time = sf.parse(rawJsonDate).getTime();
+
+            long time = inputDate.getTime();
             long now = System.currentTimeMillis();
 
             final long diff = now - time;
@@ -55,7 +57,7 @@ public class Utilities {
             } else {
                 return diff / DAY_MILLIS + " d";
             }
-        } catch (ParseException | java.text.ParseException e) {
+        } catch (ParseException e) {
             Log.i("parsetag", "getRelativeTimeAgo failed");
             e.printStackTrace();
         }
