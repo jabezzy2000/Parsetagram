@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 if (photoFile == null || ivPostImage.getDrawable()== null ) {
                     Toast.makeText(MainActivity.this,"No Image attached", Toast.LENGTH_SHORT).show();
                 }
-                ParseUser currentUser =ParseUser.getCurrentUser();
+                User currentUser = (User) ParseUser.getCurrentUser();
                 savePost(description,currentUser, photoFile);
             }
         });
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void savePost(String description, ParseUser currentUser, File photoFile) {
+    private void savePost(String description, User currentUser, File photoFile) {
         Post post = new Post();
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));

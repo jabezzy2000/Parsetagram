@@ -3,4 +3,11 @@
     <string name="Login">Login</string>
     <string name="todo">TODO</string>
     <string name="poster">poster</string>
+    <string name="title_activity_bottom_menu">bottom_menu</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="log_in">Log In</string>
 </resources>

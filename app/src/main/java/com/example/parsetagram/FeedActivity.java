@@ -3,6 +3,7 @@ package com.example.parsetagram;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,10 +15,13 @@ import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class FeedActivity extends AppCompatActivity {
+    private SwipeRefreshLayout swipeContainer;
     protected adapter adapter;
     protected List<Post> allPosts;
     RecyclerView recyclerView;
@@ -28,7 +32,7 @@ public class FeedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recyclerview);
-
+        swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         recyclerView = findViewById(R.id.recyclerView);
         allPosts = new ArrayList<>();
         adapter = new adapter(this, allPosts);
@@ -38,6 +42,22 @@ public class FeedActivity extends AppCompatActivity {
         // query posts from Parstagram
         queryPosts();
 
+        swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Your code to refresh the list here.
+                // Make sure you call swipeContainer.setRefreshing(false)
+                // once the network request has completed successfully.
+                allPosts.clear();
+                queryPosts();
+                swipeContainer.setRefreshing(false);
+            }
+        });
+        // Configure the refreshing colors
+        swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
     }
 
     private void queryPosts() {

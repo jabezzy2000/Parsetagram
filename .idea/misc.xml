@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/border.xml" value="0.1365" />
+        <entry key="app/src/main/res/layout/activity_bottom_menu.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/activity_compose_comment.xml" value="0.21510416666666668" />
-        <entry key="app/src/main/res/layout/activity_feed.xml" value="0.5936167399088542" />
+        <entry key="app/src/main/res/layout/activity_feed.xml" value="0.36493516704779516" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.20931854248046877" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.38958333333333334" />
-        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.21510416666666668" />
+        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.3955225626627604" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.284375" />
+        <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/item_comment.xml" value="0.21510416666666668" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.19831223628691982" />
         <entry key="app/src/main/res/layout/recyclerview.xml" value="0.1640625" />

@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/border"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/border">
 
     <ImageView
         android:id="@+id/ivPoster"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="60dp"
+        android:layout_width="414dp"
+        android:layout_height="175dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="48dp"
+
         android:contentDescription="@string/poster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -27,92 +29,94 @@
         android:layout_height="34dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginBottom="8dp"
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/ivPoster"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.888"
+        app:layout_constraintVertical_bias="0.16000003"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:layout_marginStart="7dp"
         app:layout_constraintBottom_toTopOf="@+id/ivPoster"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.026"
+        app:layout_constraintHorizontal_bias="0.033"
         app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39"
+        app:layout_constraintVertical_bias="0.100000024"
         tools:text="Username" />
 
-    <ImageButton
-        android:id="@+id/ibLike"
-        android:layout_width="33dp"
-        android:layout_height="29dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginEnd="8dp"
+        android:backgroundTint="@color/cardview_shadow_start_color"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        android:background="@drawable/ufi_heart"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvDescription">
 
-    <ImageButton
-        android:id="@+id/ibComment"
-        android:layout_width="33dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="16dp"
-        android:scaleType="fitEnd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/ibLike"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        android:background="@drawable/ufi_comment"/>
+        <ImageButton
+            android:id="@+id/ibLike"
+            android:layout_width="33dp"
+            android:layout_height="29dp"
+            android:layout_marginBottom="284dp"
+            android:background="@drawable/ufi_heart"
+            android:scaleType="centerInside" />
 
-    <ImageButton
-        android:id="@+id/ibSend"
-        android:layout_width="33dp"
-        android:layout_height="29dp"
-        android:layout_marginStart="24dp"
-        android:scaleType="fitEnd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.025"
-        app:layout_constraintStart_toEndOf="@+id/ibComment"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        app:layout_constraintVertical_bias="0.27"
-        android:background="@drawable/ufi_new_direct"/>
+        <ImageButton
+            android:id="@+id/ibComment"
+            android:layout_width="33dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="284dp"
+            android:background="@drawable/ufi_comment"
+            android:scaleType="centerInside" />
 
-    <ImageButton
-        android:id="@+id/ibSave"
-        android:layout_width="33dp"
-        android:layout_height="29dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="20dp"
-        android:scaleType="fitEnd"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.922"
-        app:layout_constraintStart_toEndOf="@+id/ibSend"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescription"
-        android:background="@drawable/ufi_save"/>
+        <ImageButton
+            android:id="@+id/ibSend"
+            android:layout_width="33dp"
+            android:layout_height="29dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="316dp"
+            android:background="@drawable/ufi_new_direct"
+            android:scaleType="centerInside"
+
+            />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_width="78dp"
+        android:layout_width="match_parent"
         android:layout_height="19dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="324dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="148dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivPoster"
         tools:text="Description" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvUsername"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvUsername"
+        app:layout_constraintTop_toTopOf="@+id/tvUsername"
+        app:layout_constraintVertical_bias="0.22000003"
+        tools:text="Time" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

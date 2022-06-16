@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.parse.Parse;
 import com.parse.ParseFile;
 
 import java.util.List;
@@ -44,6 +45,16 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         return posts.size();
     }
 
+    public void clear() { // method to clean all the elements of the recycler view
+        posts.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(List<Post> post) { // add to a list of all items
+        posts.addAll(post);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivProfilePicture;
         TextView tvUsername;
@@ -52,6 +63,7 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         ImageButton ibSave;
         ImageButton ibSend;
         ImageView ivPoster;
+        TextView tvTime;
         TextView tvDescription;
         String temp;
 
@@ -61,11 +73,11 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ibComment = itemView.findViewById(R.id.ibComment);
             ibLike = itemView.findViewById(R.id.ibLike);
-            ibSave = itemView.findViewById(R.id.ibSave);
+            //ibSave = itemView.findViewById(R.id.ibSave);
             ibSend = itemView.findViewById(R.id.ibSend);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             tvDescription = itemView.findViewById(R.id.tvDescription);
-            temp = "@";
+            tvTime = itemView.findViewById(R.id.tvTime);
             itemView.setOnClickListener(this);
 
         }
@@ -74,9 +86,17 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             // Bind the post data to the view elements
             tvUsername.setText(new StringBuilder().append("@").append(post.getUser().getUsername()).toString());
             tvDescription.setText(post.getDescription());
+            tvTime.setText(post.getCreatedAt().toString());
+//            tvTime.setText(com.codepath.apps.restclienttemplate.Utilities.getSimpleTime(post.getCreatedAt())); come back to this later
+
             ParseFile image = post.getImage();
+            ParseFile profileImage = post.getUser().getProfileImage();
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivPoster);
+            }
+
+            if(profileImage != null){
+                Glide.with(context).load(profileImage.getUrl()).into(ivProfilePicture);
             }
         }
 
