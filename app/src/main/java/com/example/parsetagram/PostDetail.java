@@ -1,6 +1,7 @@
 package com.example.parsetagram;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -10,12 +11,15 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.Glide;
 import com.parse.FindCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.List;
 
@@ -68,8 +72,27 @@ public class PostDetail extends AppCompatActivity {
 
         rvComments = findViewById(R.id.rvComments);
         adapter = new CommentsAdapter();
+        rvComments.setLayoutManager(new LinearLayoutManager(this));
+        rvComments.setAdapter(adapter);
 
         Post post = getIntent().getParcelableExtra("post");
+
+        ibHeart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<ParseUser> likedBy = post.getLikedBy();
+                if(post.getLikedBy().contains(ParseUser.getCurrentUser())){
+                    likedBy.remove(ParseUser.getCurrentUser());
+                    post.setLikedBY(likedBy);
+                }
+                else {
+                    likedBy.add(ParseUser.getCurrentUser());
+                }
+//                post.setLikedBY(likedBy);
+//                post.saveInBackground();
+            }
+        });
+
         ibComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,7 +102,8 @@ public class PostDetail extends AppCompatActivity {
             }
         });
 
-        tvUsername.setText(new StringBuilder().append("@").append(post.getUser().getUsername()).toString());
+//        tvUsername.setText("@" + post.getUser().getUsername());\
+        tvUsername.setText(post.getUser().getUsername());
 //        tvDescription.setText(post.getDescription());
         ParseFile image = post.getImage();
         if (image != null) {

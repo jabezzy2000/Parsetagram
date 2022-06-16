@@ -86,7 +86,7 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             if (position != RecyclerView.NO_POSITION) {
                 Post post = posts.get(position);
                 Intent intent = new Intent(context, PostDetail.class);
-                intent.putExtra(Post.class.getSimpleName(), position);
+                intent.putExtra("post", post);
                 context.startActivity(intent);
             }
         }
