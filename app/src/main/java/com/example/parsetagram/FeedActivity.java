@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FeedActivity extends AppCompatActivity {
+    private EndlessRecyclerViewScrollListener scrollListener;
     private SwipeRefreshLayout swipeContainer;
     protected adapter adapter;
     protected List<Post> allPosts;
@@ -31,6 +32,7 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         setContentView(R.layout.recyclerview);
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         recyclerView = findViewById(R.id.recyclerView);
@@ -41,6 +43,17 @@ public class FeedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // query posts from Parstagram
         queryPosts();
+
+        scrollListener = new EndlessRecyclerViewScrollListener(linearLayoutManager) {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount, RecyclerView view) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to the bottom of the list
+                queryPosts();
+            }
+        };
+
+        recyclerView.addOnScrollListener(scrollListener);
 
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -88,5 +101,7 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 }
