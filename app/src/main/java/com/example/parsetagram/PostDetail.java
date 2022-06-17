@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,11 +24,13 @@ import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PostDetail extends AppCompatActivity {
     RecyclerView rvComments;
     Post post;
+//    private final List<Post> posts;
     CommentsAdapter adapter;
 
     @Override
@@ -90,7 +93,19 @@ public class PostDetail extends AppCompatActivity {
         ibHeart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
+                List<String> likedBy = post.getLikedBy();
+                if(likedBy.contains(ParseUser.getCurrentUser().getObjectId())){
+                    likedBy.add(ParseUser.getCurrentUser().getObjectId());
+                    post.setLikedBY(likedBy);
+//                    ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
+                    ibHeart.setColorFilter(Color.RED);
+                }
+                else{
+                    likedBy.remove(ParseUser.getCurrentUser().getObjectId());
+                    post.setLikedBY(likedBy);
+                    ibHeart.setBackgroundResource(R.drawable.ufi_heart);
+                }
+
             }
         });
 

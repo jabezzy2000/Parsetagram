@@ -85,8 +85,6 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
                 @Override
                 public void onClick(View v) {
                     ibLike.setBackgroundResource(R.drawable.ufi_heart_active);
-
-
                 }
             });
 
@@ -124,3 +122,21 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         }
     }
 }
+// ibHeart.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View v) {
+//        List<String> likedBy = post.getLikedBy();
+//        if(likedBy.contains(ParseUser.getCurrentUser().getObjectId())){
+//        likedBy.add(ParseUser.getCurrentUser().getObjectId());
+//        post.setLikedBY(likedBy);
+////                    ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
+//        ibHeart.setColorFilter(Color.RED);
+//        }
+//        else{
+//        likedBy.remove(ParseUser.getCurrentUser().getObjectId());
+//        post.setLikedBY(likedBy);
+//        ibHeart.setBackgroundResource(R.drawable.ufi_heart);
+//        }
+//
+//        }
+//        });

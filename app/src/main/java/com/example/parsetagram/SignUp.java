@@ -30,17 +30,17 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Create the ParseUser
-                ParseUser User = new ParseUser();
+                User user = new User();
                 //getting text from editText
                 String username = SignUpUsername.getText().toString(); // gets text and changes it to string
                 String password = SignUpPassword.getText().toString();
 
                 // Set core properties
-                User.setUsername(username); //setting the username to username inputted by user
-                User.setPassword(password); // setting the password to password inputted by user
+                user.setUsername(username); //setting the username to username inputted by user
+                user.setPassword(password); // setting the password to password inputted by user
 
                 // Invoke signUpInBackground
-                User.signUpInBackground(new SignUpCallback() {
+                user.signUpInBackground(new SignUpCallback() {
                     @Override
                     public void done(ParseException e) {
                         if (e == null) {

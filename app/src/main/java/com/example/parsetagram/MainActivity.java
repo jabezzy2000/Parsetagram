@@ -40,9 +40,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnCaptureImg;
     String TAG = "tag";
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 // by this point we have the camera photo on disk
                 Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                // RESIZE BITMAP, see section below
+                // RESIZE BITMAP
                 // Load the taken image into a preview
                 ivPostImage.setImageBitmap(takenImage);
             } else { // Result was a failure
@@ -143,9 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void saveProfilePicture(User currentUser, File photoFile){
-        currentUser.setProfileImage(new ParseFile(photoFile));
-    }
 
     private void savePost(String description, User currentUser, File photoFile) {
         Post post = new Post();
@@ -162,12 +156,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.i(TAG, "done: Post was successfull");
                 etDescription.setText("");
                 ivPostImage.setImageResource(0);
-
-
             }
         });
     }
-
     private void queryPosts() {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         query.include(Post.KEY_USER);
@@ -183,7 +174,6 @@ public class MainActivity extends AppCompatActivity {
                     Log.i(TAG, "done: success" + post.getDescription());
 
                 }
-
             }
         });
     }
@@ -194,6 +184,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this,LoginActivity.class);
         startActivity(intent);
     }
-
-
 }
