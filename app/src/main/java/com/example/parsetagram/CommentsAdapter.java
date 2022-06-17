@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
     public ArrayList<Comment> mComments = new ArrayList();
+
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView tvAuthor;
         public TextView tvBody;

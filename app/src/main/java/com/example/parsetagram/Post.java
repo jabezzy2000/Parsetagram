@@ -20,10 +20,9 @@ public class Post extends ParseObject {
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
     }
-    public void setDescription(String description){
-        put(KEY_DESCRIPTION, description);
 
-    }
+    public void setDescription(String description){put(KEY_DESCRIPTION, description);}
+
     public User getUser() {
         return (User) getParseUser(KEY_USER);
     }
@@ -44,17 +43,23 @@ public class Post extends ParseObject {
         put(KEY_PROFILE_IMAGE, image);
     }
 
-    public void setUser(User user) {
-        put(KEY_USER, user);
-    }
+    public void setUser(User user) {put(KEY_USER, user);}
 
-    public List<String> getLikedBy(){
-        List<String> likedBy = getList(KEY_LIKED_BY);
-        if(likedBy==null){
-            return new ArrayList<>();
-
+    public List<User> getLikedBy(){
+        List<User> likedBy = getList(KEY_LIKED_BY);
+        if(likedBy != null){
+            return likedBy;
+        }else{
+            return new ArrayList<User>();
         }
-        return likedBy;
+    }
+    public boolean isLikedByCurrentUser(){
+        List<User> likedBy  = getLikedBy();
+        for(int i = 0; i < getLikedBy().size(); i++){
+            if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())){
+                return true;
+            }}
+        return false;
     }
 
     public String likeCountDisplayText(){
@@ -62,10 +67,27 @@ public class Post extends ParseObject {
         likesText += getLikedBy().size() == 1 ? "like" : "likes";
         return likesText;
     }
+    public void unlike(){
+        List<User> likedBy  = getLikedBy();
+        for(int i = 0; i < getLikedBy().size(); i++){
+            if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())){
+                likedBy.remove(i);
+            }
+            setLikedBy(likedBy);
+            saveInBackground();
+        }}
 
-    public void setLikedBY(List<String> newLikedBy) {
-        put(KEY_LIKED_BY, newLikedBy);
+
+    public void setLikedBy(List<User> user){
+        put(KEY_LIKED_BY, user);
     }
 
+    public void like(){
+        unlike();
+        List<User> likedby = getLikedBy();
+        likedby.add((User) User.getCurrentUser());
+        setLikedBy(likedby);
+        saveInBackground();
+    }
 
 }

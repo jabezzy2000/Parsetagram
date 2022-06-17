@@ -30,14 +30,20 @@ import java.util.List;
 public class PostDetail extends AppCompatActivity {
     RecyclerView rvComments;
     Post post;
-//    private final List<Post> posts;
+    private TextView tvUsername;
+    private ImageView ivImage;
+    private TextView tvDescription;
+    private TextView tvCreatedAt;
+    private ImageButton ibLikes;
+    private ImageButton ibComment;
+    private TextView tvLikeCounts;
+    private ImageView ivDetailProfile;
     CommentsAdapter adapter;
 
     @Override
     protected void onRestart(){
         //when we come back from any other activity
         super.onRestart();
-
         refreshComments();
     }
 
@@ -54,24 +60,34 @@ public class PostDetail extends AppCompatActivity {
                     Log.e("Failed to fetch comments", e.getMessage());
                     return;
                 }
+                else{
                 adapter.mComments.clear();
                 adapter.mComments.addAll(objects);
-                adapter.notifyDataSetChanged();
-
+                adapter.notifyDataSetChanged();}
             }
         });
     }
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
-        TextView tvUsername = findViewById(R.id.tvUsername);
-        TextView tvDate = findViewById(R.id.tvDate);
-        ImageView ivPhoto = findViewById(R.id.ivPhoto);
-        ImageView ivProfilePicture = findViewById(R.id.ivProfileImage);
-        ImageButton ibHeart = findViewById(R.id.ibHeart);
-        ImageButton ibComment = findViewById(R.id.ibComment);
-        TextView tvLikes = findViewById(R.id.tvLikes);
-        CommentsAdapter adapter;
+//        TextView tvUsername = findViewById(R.id.tvUsername);
+//        TextView tvDate = findViewById(R.id.tvDate);
+//        ImageView ivPhoto = findViewById(R.id.ivPhoto);
+//        ImageView ivProfilePicture = findViewById(R.id.ivProfileImage);
+//        ImageButton ibHeart = findViewById(R.id.ibHeart);
+//        ImageButton ibComment = findViewById(R.id.ibComment);
+//        TextView tvLikes = findViewById(R.id.tvLikes);
+//        CommentsAdapter adapter;
+
+        tvUsername = findViewById(R.id.tvUsername);
+        ivImage = findViewById(R.id.ivPhoto);
+        ivDetailProfile = findViewById(R.id.ivProfileImage);
+        tvDescription = findViewById(R.id.tvDescription);
+        tvCreatedAt = findViewById(R.id.tvDate);
+        ibLikes = findViewById(R.id.ibHeart);
+        ibComment = findViewById(R.id.ibComment);
+        rvComments = findViewById(R.id.rvComments);
+        tvLikeCounts = findViewById(R.id.tvLikes);
 
 
         rvComments = findViewById(R.id.rvComments);
@@ -81,7 +97,7 @@ public class PostDetail extends AppCompatActivity {
 
         Post post = getIntent().getParcelableExtra("post");
 
-        ivProfilePicture.setOnClickListener(new View.OnClickListener() {
+        ivDetailProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(PostDetail.this,"Profile was clicked", Toast.LENGTH_SHORT).show();
@@ -90,22 +106,17 @@ public class PostDetail extends AppCompatActivity {
             }
         });
 
-        ibHeart.setOnClickListener(new View.OnClickListener() {
+        ibLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<String> likedBy = post.getLikedBy();
-                if(likedBy.contains(ParseUser.getCurrentUser().getObjectId())){
-                    likedBy.add(ParseUser.getCurrentUser().getObjectId());
-                    post.setLikedBY(likedBy);
-//                    ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
-                    ibHeart.setColorFilter(Color.RED);
+                if(post.isLikedByCurrentUser()){
+                    post.unlike();
+                    ibLikes.setBackgroundResource(R.drawable.ufi_heart);
+                }else{
+                    post.like();
+                    ibLikes.setBackgroundResource(R.drawable.ufi_heart_active);
                 }
-                else{
-                    likedBy.remove(ParseUser.getCurrentUser().getObjectId());
-                    post.setLikedBY(likedBy);
-                    ibHeart.setBackgroundResource(R.drawable.ufi_heart);
-                }
-
+                tvLikeCounts.setText(post.likeCountDisplayText());
             }
         });
 
@@ -117,15 +128,21 @@ public class PostDetail extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        refreshComments();
+
 
         tvUsername.setText(post.getUser().getUsername());
-        tvDate.setText(Utilities.getSimpleTime(post.getCreatedAt()));
+        tvCreatedAt.setText(Utilities.getSimpleTime(post.getCreatedAt()));
         ParseFile image = post.getImage();
         ParseFile profileImage = post.getUser().getProfileImage();
         if (image != null) {
-            Glide.with(this).load(image.getUrl()).into(ivPhoto);
+            Glide.with(this).load(image.getUrl()).into(ivImage);
+            ivImage.setVisibility(View.VISIBLE); // make visible if there
     }
+        else{
+            ivImage.setVisibility(View.GONE);
+        }
         if(profileImage != null ) {
-            Utilities.roundedImage(this,profileImage.getUrl(),ivProfilePicture,100);
+            Utilities.roundedImage(this,profileImage.getUrl(),ivDetailProfile,100);
         }
 }}

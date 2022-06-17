@@ -6,10 +6,10 @@
         <entry key="app/src/main/res/drawable/border.xml" value="0.1365" />
         <entry key="app/src/main/res/layout/activity_bottom_menu.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/activity_compose_comment.xml" value="0.21510416666666668" />
-        <entry key="app/src/main/res/layout/activity_feed.xml" value="0.36493516704779516" />
+        <entry key="app/src/main/res/layout/activity_feed.xml" value="0.3422698974609375" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.48572845458984376" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.38958333333333334" />
-        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.3955225626627604" />
+        <entry key="app/src/main/res/layout/activity_post_detail.xml" value="0.36768149882903983" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.28229166666666666" />
         <entry key="app/src/main/res/layout/activity_user_profile.xml" value="0.2823822021484375" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.284375" />

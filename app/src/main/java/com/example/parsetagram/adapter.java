@@ -33,6 +33,7 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_feed, parent, false);
         return new ViewHolder(view);
+
     }
 
     @Override
@@ -66,6 +67,7 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         ImageView ivPoster;
         TextView tvTime;
         TextView tvDescription;
+        TextView tvLikes;
 
 
         public ViewHolder(@NonNull View itemView) {
@@ -74,19 +76,12 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             tvUsername = itemView.findViewById(R.id.tvUsername);
             ibComment = itemView.findViewById(R.id.ibComment);
             ibLike = itemView.findViewById(R.id.ibLike);
-            //ibSave = itemView.findViewById(R.id.ibSave);
             ibSend = itemView.findViewById(R.id.ibSend);
             ivPoster = itemView.findViewById(R.id.ivPoster);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvTime = itemView.findViewById(R.id.tvTime);
+            tvLikes = itemView.findViewById(R.id.tvLikesFeed);
             itemView.setOnClickListener(this);
-
-            ibLike.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ibLike.setBackgroundResource(R.drawable.ufi_heart_active);
-                }
-            });
 
         }
 
@@ -94,9 +89,8 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             // Bind the post data to the view elements
             tvUsername.setText(new StringBuilder().append("@").append(post.getUser().getUsername()).toString());
             tvDescription.setText(post.getDescription());
-//            tvTime.setText(post.getCreatedAt().toString());
             tvTime.setText(Utilities.getSimpleTime(post.getCreatedAt()));
-//            tvTime.setText(com.codepath.apps.restclienttemplate.Utilities.getSimpleTime(post.getCreatedAt())); come back to this later
+            tvLikes.setText(post.likeCountDisplayText());
 
             ParseFile image = post.getImage();
             ParseFile profileImage = post.getUser().getProfileImage();
@@ -107,6 +101,13 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             if(profileImage != null){
                 //Glide.with(context).load(profileImage.getUrl()).into(ivProfilePicture);
                 Utilities.roundedImage(context,profileImage.getUrl(),ivProfilePicture,30);
+            }
+
+            if (post.isLikedByCurrentUser()) {
+                ibLike.setBackgroundResource(R.drawable.ufi_heart_active);
+            }
+            else{
+                ibLike.setBackgroundResource(R.drawable.ufi_heart);
             }
         }
 
