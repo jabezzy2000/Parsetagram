@@ -54,7 +54,8 @@ Here's a walkthrough of implemented user stories:
 
 
 
-https://user-images.githubusercontent.com/90366540/174411389-eb4d7b2e-45dc-4082-9de2-2bde3bbddb5f.mp4
+https://user-images.githubusercontent.com/90366540/174412750-5e3a58e7-1252-453a-b7f3-c1a38fa1f3a8.mp4
+
 
 
 
