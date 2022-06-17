@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,28 +8,43 @@
     tools:context=".PostDetail"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ivProfileImage" />
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="276dp"
+        android:layout_height="38dp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintStart_toEndOf="@+id/ivProfileImage"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvUsername"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvDate"/>
+        android:id="@+id/tvDate"
+        android:layout_width="263dp"
+        android:layout_height="26dp"
+        android:layout_marginEnd="48dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvUsername"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername" />
+
     <ImageView
         android:id="@+id/ivPhoto"
         android:layout_width="match_parent"
-        android:layout_height="200dp"/>
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        android:scaleType="fitXY"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivPhoto">
 
         <ImageButton
             android:id="@+id/ibHeart"
@@ -54,15 +69,34 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvLikes" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvComments"
+        android:id="@+id/tvLikes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
 
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvComments"
+        android:layout_width="410dp"
+        android:layout_height="444dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLikes"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@id/ivProfileImage"
+        android:layout_width="84dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="1dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/ivPhoto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

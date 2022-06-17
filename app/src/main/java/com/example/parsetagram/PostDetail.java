@@ -60,10 +60,10 @@ public class PostDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
-
         TextView tvUsername = findViewById(R.id.tvUsername);
         TextView tvDate = findViewById(R.id.tvDate);
         ImageView ivPhoto = findViewById(R.id.ivPhoto);
+        ImageView ivProfilePicture = findViewById(R.id.ivProfileImage);
         ImageButton ibHeart = findViewById(R.id.ibHeart);
         ImageButton ibComment = findViewById(R.id.ibComment);
         TextView tvLikes = findViewById(R.id.tvLikes);
@@ -102,10 +102,17 @@ public class PostDetail extends AppCompatActivity {
             }
         });
 
-        tvUsername.setText("@" + post.getUser().getUsername());
+        tvUsername.setText(post.getUser().getUsername());
+//        ParseFile profileImage = post.getProfileImage();
+        tvDate.setText(Utilities.getSimpleTime(post.getCreatedAt()));
 //        tvDescription.setText(post.getDescription());
+//        ParseFile image = post.getUser().getProfileImage();
         ParseFile image = post.getImage();
+        ParseFile profileImage = post.getUser().getProfileImage();
         if (image != null) {
             Glide.with(this).load(image.getUrl()).into(ivPhoto);
     }
+        if(profileImage != null ) {
+            Utilities.roundedImage(this,profileImage.getUrl(),ivProfilePicture,100);
+        }
 }}

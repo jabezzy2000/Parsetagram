@@ -42,7 +42,7 @@
         android:id="@+id/tvUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
+        android:textStyle="italic"
         android:layout_marginStart="7dp"
         app:layout_constraintBottom_toTopOf="@+id/ivPoster"
         app:layout_constraintEnd_toEndOf="parent"
