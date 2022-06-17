@@ -90,16 +90,7 @@ public class PostDetail extends AppCompatActivity {
         ibHeart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<ParseUser> likedBy = post.getLikedBy();
-                if(post.getLikedBy().contains(ParseUser.getCurrentUser())){
-                    likedBy.remove(ParseUser.getCurrentUser());
-                    post.setLikedBY(likedBy);
-                }
-                else {
-                    likedBy.add(ParseUser.getCurrentUser());
-                }
-//                post.setLikedBY(likedBy);
-//                post.saveInBackground();
+                ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
             }
         });
 
