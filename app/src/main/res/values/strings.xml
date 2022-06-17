@@ -10,4 +10,6 @@
     <string name="enter_username">Enter Username</string>
     <string name="enter_password">Enter Password</string>
     <string name="log_in">Log In</string>
+    <string name="create_password">Create Password</string>
+    <string name="create_username">Create Username</string>
 </resources>

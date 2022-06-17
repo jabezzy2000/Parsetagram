@@ -2,6 +2,7 @@ package com.example.parsetagram;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,7 +66,7 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         ImageView ivPoster;
         TextView tvTime;
         TextView tvDescription;
-        String temp;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +80,15 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvTime = itemView.findViewById(R.id.tvTime);
             itemView.setOnClickListener(this);
+
+            ibLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ibLike.setBackgroundResource(R.drawable.ufi_heart_active);
+
+
+                }
+            });
 
         }
 
@@ -112,6 +122,5 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
                 context.startActivity(intent);
             }
         }
-
     }
 }

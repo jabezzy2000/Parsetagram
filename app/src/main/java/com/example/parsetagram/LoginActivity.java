@@ -15,10 +15,11 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 
 public class LoginActivity extends AppCompatActivity {
-    public static final String TAG = "LoginActivity";
+    public final String TAG = "LoginActivity";
     public EditText etUsername;
     public EditText etPassword;
     public Button btnLogin;
+    public Button btnSignUp;
 
 
 
@@ -31,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = findViewById(R.id.btnLogIn);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
+        btnSignUp = findViewById(R.id.btnSignUp);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -44,6 +46,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 loginUser(username,password);
                 //goMainActivity();
+            }
+        });
+
+        btnSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(LoginActivity.this, "Sign up button was clicked", Toast.LENGTH_SHORT).show();
+                //Intent intent = new Intent(LoginActivity.this,SignUp.class);
+                //startActivity(intent);
+
             }
         });
 

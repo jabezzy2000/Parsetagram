@@ -60,5 +60,35 @@
         app:layout_constraintTop_toBottomOf="@+id/etUsername"
         tools:text="Password" />
 
+    <Button
+        android:id="@+id/btnSignUp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="119dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="238dp"
+        android:layout_marginTop="181dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="35dp"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="SIgn Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="262dp"
+        android:layout_marginEnd="91dp"
+        android:textStyle="italic"
+        android:text="Don't Have An Account?"
+        app:layout_constraintBottom_toTopOf="@+id/btnSignUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
+        app:layout_constraintVertical_bias="0.919" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

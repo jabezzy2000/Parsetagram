@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.bumptech.glide.Glide;
@@ -56,7 +58,6 @@ public class PostDetail extends AppCompatActivity {
             }
         });
     }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
@@ -76,6 +77,15 @@ public class PostDetail extends AppCompatActivity {
         rvComments.setAdapter(adapter);
 
         Post post = getIntent().getParcelableExtra("post");
+
+        ivProfilePicture.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(PostDetail.this,"Profile was clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PostDetail.this,UserProfile.class);
+                startActivity(intent);
+            }
+        });
 
         ibHeart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,10 +113,7 @@ public class PostDetail extends AppCompatActivity {
         });
 
         tvUsername.setText(post.getUser().getUsername());
-//        ParseFile profileImage = post.getProfileImage();
         tvDate.setText(Utilities.getSimpleTime(post.getCreatedAt()));
-//        tvDescription.setText(post.getDescription());
-//        ParseFile image = post.getUser().getProfileImage();
         ParseFile image = post.getImage();
         ParseFile profileImage = post.getUser().getProfileImage();
         if (image != null) {

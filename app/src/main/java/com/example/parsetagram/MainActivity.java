@@ -143,7 +143,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
+    private void saveProfilePicture(User currentUser, File photoFile){
+        currentUser.setProfileImage(new ParseFile(photoFile));
+    }
 
     private void savePost(String description, User currentUser, File photoFile) {
         Post post = new Post();
