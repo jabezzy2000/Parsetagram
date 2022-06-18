@@ -70,15 +70,6 @@ public class PostDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
-//        TextView tvUsername = findViewById(R.id.tvUsername);
-//        TextView tvDate = findViewById(R.id.tvDate);
-//        ImageView ivPhoto = findViewById(R.id.ivPhoto);
-//        ImageView ivProfilePicture = findViewById(R.id.ivProfileImage);
-//        ImageButton ibHeart = findViewById(R.id.ibHeart);
-//        ImageButton ibComment = findViewById(R.id.ibComment);
-//        TextView tvLikes = findViewById(R.id.tvLikes);
-//        CommentsAdapter adapter;
-
         tvUsername = findViewById(R.id.tvUsername);
         ivImage = findViewById(R.id.ivPhoto);
         ivDetailProfile = findViewById(R.id.ivProfileImage);
@@ -88,8 +79,6 @@ public class PostDetail extends AppCompatActivity {
         ibComment = findViewById(R.id.ibComment);
         rvComments = findViewById(R.id.rvComments);
         tvLikeCounts = findViewById(R.id.tvLikes);
-
-
         rvComments = findViewById(R.id.rvComments);
         adapter = new CommentsAdapter();
         rvComments.setLayoutManager(new LinearLayoutManager(this));
@@ -97,7 +86,7 @@ public class PostDetail extends AppCompatActivity {
 
         Post post = getIntent().getParcelableExtra("post");
 
-        ivDetailProfile.setOnClickListener(new View.OnClickListener() {
+        ivDetailProfile.setOnClickListener(new View.OnClickListener() { //setting on click listener for detail profile
             @Override
             public void onClick(View v) {
                 Toast.makeText(PostDetail.this,"Profile was clicked", Toast.LENGTH_SHORT).show();
@@ -129,7 +118,6 @@ public class PostDetail extends AppCompatActivity {
             }
         });
         refreshComments();
-
 
         tvUsername.setText(post.getUser().getUsername());
         tvCreatedAt.setText(Utilities.getSimpleTime(post.getCreatedAt()));

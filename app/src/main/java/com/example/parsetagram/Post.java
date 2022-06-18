@@ -20,32 +20,25 @@ public class Post extends ParseObject {
     public String getDescription(){
         return getString(KEY_DESCRIPTION);
     }
-
     public void setDescription(String description){put(KEY_DESCRIPTION, description);}
-
     public User getUser() {
         return (User) getParseUser(KEY_USER);
     }
-
     public ParseFile getImage(){
         return getParseFile(KEY_IMAGE);
     }
-
     public ParseFile getProfileImage(){
         return getParseFile(KEY_PROFILE_IMAGE);
     }
-
     public void setImage(ParseFile image){
         put(KEY_IMAGE, image);
     }
-
     public void setProfileImage(ParseFile image){
         put(KEY_PROFILE_IMAGE, image);
     }
-
     public void setUser(User user) {put(KEY_USER, user);}
 
-    public List<User> getLikedBy(){
+    public List<User> getLikedBy(){ //returns a list of users that liked a post
         List<User> likedBy = getList(KEY_LIKED_BY);
         if(likedBy != null){
             return likedBy;
@@ -53,7 +46,8 @@ public class Post extends ParseObject {
             return new ArrayList<User>();
         }
     }
-    public boolean isLikedByCurrentUser(){
+
+    public boolean isLikedByCurrentUser(){ //returns a true or false depending on whether the current user has liked a post
         List<User> likedBy  = getLikedBy();
         for(int i = 0; i < getLikedBy().size(); i++){
             if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())){
@@ -62,12 +56,13 @@ public class Post extends ParseObject {
         return false;
     }
 
-    public String likeCountDisplayText(){
+    public String likeCountDisplayText(){//displays the number of likes (size of getLikedBy)
         String likesText= String.valueOf(getLikedBy().size());
         likesText += getLikedBy().size() == 1 ? "like" : "likes";
         return likesText;
     }
-    public void unlike(){
+
+    public void unlike(){//method to unlike a post
         List<User> likedBy  = getLikedBy();
         for(int i = 0; i < getLikedBy().size(); i++){
             if(likedBy.get(i).hasSameId(ParseUser.getCurrentUser())){
@@ -77,10 +72,9 @@ public class Post extends ParseObject {
             saveInBackground();
         }}
 
-
     public void setLikedBy(List<User> user){
         put(KEY_LIKED_BY, user);
-    }
+    } //putting a user in a list of liked by
 
     public void like(){
         unlike();
@@ -89,5 +83,4 @@ public class Post extends ParseObject {
         setLikedBy(likedby);
         saveInBackground();
     }
-
 }

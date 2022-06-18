@@ -6,7 +6,7 @@ import com.parse.Parse;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
-public class ParseApplication extends Application {
+public class ParseApplication extends Application { //java file to register Sub classes
     @Override
     public void onCreate() {
         super.onCreate();

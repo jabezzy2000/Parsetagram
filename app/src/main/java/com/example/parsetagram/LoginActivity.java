@@ -21,20 +21,14 @@ public class LoginActivity extends AppCompatActivity {
     public Button btnLogin;
     public Button btnSignUp;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-//        btnLogin = (Button) findViewById(R.id.btnSignIn);
-
         btnLogin = findViewById(R.id.btnLogIn);
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnSignUp = findViewById(R.id.btnSignUp);
-
-
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,42 +36,18 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(LoginActivity.this,"Button was clicked", Toast.LENGTH_SHORT).show();
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
-
-
-                loginUser(username,password);
-                //goMainActivity();
+                loginUser(username,password); // from method login defined below
             }
         });
-
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(LoginActivity.this, "Sign up button was clicked", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(LoginActivity.this,SignUp.class);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
-//    protected void onCreate(Bundle savedInstanceState){
-//        super.onCreate(savedInstanceState);
-//        //insert this line here
-//        setContentView(R.layout.activity_login);
-//
-//        //Pull the button with the id
-//        btnLogin = (Button) findViewById(R.id.btnLogin);
-//
-//        //set onclicklistener
-//        btnLogin.setOnClickListener(new View.OnClickListener(){
-//            public void onClick(View view){
-//                Toast.makeText(getApplicationContext(),"Button was Clicked", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
     public void loginUser(String username, String password) {
         Log.i(TAG, "loginUser: Attempting to login user " + username);
         ParseUser.logInInBackground(username, password, new LogInCallback() {
@@ -89,14 +59,12 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this,"failure", Toast.LENGTH_SHORT).show();;
                     return;
                 }
-//                    goMainActivity(); // and this goes back to main activity...
-                      goFeedActivity();
+                      goFeedActivity(); // method to change current page to feed activity
                     Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
             }
         });
     }
-
-    public void goMainActivity() {
+    public void goMainActivity() { //defined method for later personal use and practice
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(intent);
     }
@@ -104,6 +72,4 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(LoginActivity.this,FeedActivity.class);
         startActivity((intent));
     }
-
-
 }

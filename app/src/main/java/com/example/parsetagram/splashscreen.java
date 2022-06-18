@@ -10,7 +10,6 @@ public class splashscreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splashscreen);
-
         handler=new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -20,9 +19,7 @@ public class splashscreen extends Activity {
                 finish();
             }
         },3000);
-
     }
-
 }
 
 

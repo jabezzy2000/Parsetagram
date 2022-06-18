@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class Utilities {
+public class Utilities { //utilities file for recyclable methods
     private static final int SECOND_MILLIS = 1000;
     private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
     private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
@@ -30,7 +30,7 @@ public class Utilities {
         Glide.with(context).load(url).transform(new RoundedCorners(radius)).into(iv);
     } // method to setImage with rounded corners
 
-    //method to get the date/time of a tweet in friendly format
+    //method to get the date/time of a insta post in friendly format
     public static String getSimpleTime(Date inputDate) {
         String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
         SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);

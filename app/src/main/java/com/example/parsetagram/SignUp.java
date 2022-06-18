@@ -57,7 +57,6 @@ public class SignUp extends AppCompatActivity {
         });
 
     }
-
     private void goFeedActivity() {
             Intent intent = new Intent(SignUp.this,FeedActivity.class);
             startActivity((intent));

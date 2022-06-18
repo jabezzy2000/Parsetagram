@@ -27,21 +27,17 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         this.context = context;
         this.posts = posts;
     }
-
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.activity_feed, parent, false);
         return new ViewHolder(view);
-
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Post post = posts.get(position);
         holder.bind(post);
     }
-
     @Override
     public int getItemCount() {
         return posts.size();
@@ -51,12 +47,10 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         posts.clear();
         notifyDataSetChanged();
     }
-
     public void addAll(List<Post> post) { // add to a list of all items
         posts.addAll(post);
         notifyDataSetChanged();
     }
-
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView ivProfilePicture;
         TextView tvUsername;
@@ -68,7 +62,6 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         TextView tvTime;
         TextView tvDescription;
         TextView tvLikes;
-
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,7 +75,6 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             tvTime = itemView.findViewById(R.id.tvTime);
             tvLikes = itemView.findViewById(R.id.tvLikesFeed);
             itemView.setOnClickListener(this);
-
         }
 
         public void bind(Post post) {
@@ -99,18 +91,16 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
             }
 
             if(profileImage != null){
-                //Glide.with(context).load(profileImage.getUrl()).into(ivProfilePicture);
                 Utilities.roundedImage(context,profileImage.getUrl(),ivProfilePicture,30);
-            }
+            } // using defined method in Utilities.java
 
             if (post.isLikedByCurrentUser()) {
                 ibLike.setBackgroundResource(R.drawable.ufi_heart_active);
-            }
+            } // if the image is already liked by current user...
             else{
                 ibLike.setBackgroundResource(R.drawable.ufi_heart);
             }
         }
-
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
@@ -123,21 +113,4 @@ public class adapter extends RecyclerView.Adapter<adapter.ViewHolder> {
         }
     }
 }
-// ibHeart.setOnClickListener(new View.OnClickListener() {
-//@Override
-//public void onClick(View v) {
-//        List<String> likedBy = post.getLikedBy();
-//        if(likedBy.contains(ParseUser.getCurrentUser().getObjectId())){
-//        likedBy.add(ParseUser.getCurrentUser().getObjectId());
-//        post.setLikedBY(likedBy);
-////                    ibHeart.setBackgroundResource(R.drawable.ufi_heart_active);
-//        ibHeart.setColorFilter(Color.RED);
-//        }
-//        else{
-//        likedBy.remove(ParseUser.getCurrentUser().getObjectId());
-//        post.setLikedBY(likedBy);
-//        ibHeart.setBackgroundResource(R.drawable.ufi_heart);
-//        }
-//
-//        }
-//        });
+

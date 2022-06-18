@@ -28,5 +28,5 @@ public class Comment extends ParseObject {
         put(KEY_BODY,body);
     }
 
-
 }
+//incomplete implementation

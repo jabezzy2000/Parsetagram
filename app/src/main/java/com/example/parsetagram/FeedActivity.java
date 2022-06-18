@@ -7,6 +7,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +29,6 @@ public class FeedActivity extends AppCompatActivity {
     protected List<Post> allPosts;
     RecyclerView recyclerView;
     String TAG = "tag";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,15 +59,12 @@ public class FeedActivity extends AppCompatActivity {
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                // Your code to refresh the list here.
-                // Make sure you call swipeContainer.setRefreshing(false)
-                // once the network request has completed successfully.
                 allPosts.clear();
                 queryPosts();
-                swipeContainer.setRefreshing(false);
+                swipeContainer.setRefreshing(false); // setting to false after refresh to stop refresh container
             }
         });
-        // Configure the refreshing colors
+        // Configuring the refreshing colors
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -74,15 +72,15 @@ public class FeedActivity extends AppCompatActivity {
     }
 
     private void queryPosts() {
-        // specify what type of data we want to query - Post.class
+        // specifying what type of data we want to query - Post.class
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
-        // include data referred by user key
+        // including data referred by user key
         query.include(Post.KEY_USER);
-        // limit query to latest 20 items
+        // limiting query to latest 20 items
         query.setLimit(20);
-        // order posts by creation date (newest first)
+        // ordering posts by creation date (newest first)
         query.addDescendingOrder("createdAt");
-        // start an asynchronous call for posts
+        // starting an asynchronous call for posts
         query.findInBackground(new FindCallback<Post>() {
             @Override
             public void done(List<Post> posts, ParseException e) {
@@ -91,7 +89,6 @@ public class FeedActivity extends AppCompatActivity {
                     Log.e(TAG, "Issue with getting posts", e);
                     return;
                 }
-                // for debugging purposes let's print every post description to logcat
                 for (Post post : posts) {
                     Log.i(TAG, "Post: " + post.getDescription() + ", username: " + post.getUser().getUsername());
                 }
@@ -101,7 +98,4 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
